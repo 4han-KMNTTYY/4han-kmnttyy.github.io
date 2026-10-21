@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>グループへの招待</title>
+  <style>
+    :root { color-scheme: light dark; --bg: #f8f9fe; --fg: #1a1c20; --sub: #5d5f67; --accent: #3f5f90; --on-accent: #fff; }
+    @media (prefers-color-scheme: dark) { :root { --bg: #111318; --fg: #e2e2e9; --sub: #c4c6d0; --accent: #a9c7ff; --on-accent: #0a305f; } }
+    body { margin: 0; background: var(--bg); color: var(--fg); font-family: system-ui, sans-serif; }
+    main { max-width: 480px; margin: 0 auto; padding: 48px 16px; text-align: center; }
+    h1 { font-size: 1.4rem; }
+    p { color: var(--sub); line-height: 1.7; }
+    a.button { display: inline-block; margin: 16px 0; padding: 14px 28px; border-radius: 999px; background: var(--accent); color: var(--on-accent); text-decoration: none; font-weight: bold; }
+    .error { color: #ba1a1a; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>グループへの招待</h1>
+    <div id="ok" hidden>
+      <p>アプリでリンクを開くと、グループに参加できます。</p>
+      <a id="open" class="button" href="#">アプリで開く</a>
+      <p>ボタンを押しても開かない場合は、アプリがインストールされているか確認してください。<br>インストール後に、もう一度このリンクを開いてください。</p>
+    </div>
+    <p id="invalid" class="error" hidden>招待リンクが正しくありません。招待した人に、もう一度リンクを送ってもらってください。</p>
+  </main>
+  <script>
+    // App Links の確認が済んでいれば、このページは表示されずにアプリが開く。
+    // ここに来た場合（未インストール・確認前など）は、intent:// でアプリを直接開けるようにする
+    var token = new URLSearchParams(location.search).get('t');
+    if (token && /^[A-Za-z0-9_-]{16,64}$/.test(token)) {
+      document.getElementById('open').href =
+        'intent://4han-kmnttyy.github.io/join?t=' + token +
+        '#Intent;scheme=https;package=com.github.fourhanKMNTTYY.stationareanav;end';
+      document.getElementById('ok').hidden = false;
+    } else {
+      document.getElementById('invalid').hidden = false;
+    }
+  </script>
+</body>
+</html>

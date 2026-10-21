@@ -1,0 +1,12 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.github.fourhanKMNTTYY.stationareanav",
+      "sha256_cert_fingerprints": [
+        "C5:DF:54:74:4D:FE:E5:4D:A2:E8:6A:D1:18:6F:02:65:FA:12:24:A0:63:C5:02:51:A7:C9:52:69:0E:A0:5E:F1"
+      ]
+    }
+  }
+]
